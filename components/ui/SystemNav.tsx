@@ -84,11 +84,14 @@ export const SystemNav: React.FC<SystemNavProps> = ({
                 className={`transition-all duration-300 ${infoVisible ? 'text-[#E42737] drop-shadow-[0_0_5px_rgba(228,39,55,0.5)]' : 'text-white/20 hover:text-white/50'}`}
                 title="TOGGLE SYSTEM INFO"
             ><Info size={18} /></button>
-            <button 
-                onClick={(e) => { e.stopPropagation(); onToggleList(); }} 
-                className={`transition-all duration-300 ${listVisible ? 'text-[#E42737] drop-shadow-[0_0_5px_rgba(228,39,55,0.5)]' : 'text-white/20 hover:text-white/50'}`}
-                title="TOGGLE TARGET LIST"
-            ><Crosshair size={18} /></button>
+            
+            {viewMode === 'ORBIT' && (
+              <button 
+                  onClick={(e) => { e.stopPropagation(); onToggleList(); }} 
+                  className={`transition-all duration-300 ${listVisible ? 'text-[#E42737] drop-shadow-[0_0_5px_rgba(228,39,55,0.5)]' : 'text-white/20 hover:text-white/50'}`}
+                  title="TOGGLE TARGET LIST"
+              ><Crosshair size={18} /></button>
+            )}
          </div>
       </div>
 

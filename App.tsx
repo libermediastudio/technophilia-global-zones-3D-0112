@@ -116,7 +116,7 @@ const App: React.FC = () => {
       className={`
         bg-[#121212] selection:bg-[#E42737] selection:text-white transition-all duration-700 ease-in-out
         ${isActivated ? 'fixed inset-0 z-[99999] w-full h-[100dvh]' : 'relative w-full h-[600px] lg:h-screen overflow-hidden'}
-        ${isActivated && !isMobile ? 'cursor-none' : 'cursor-default'}
+        ${isActivated && !isMobile && viewMode === 'ORBIT' && listVisible ? 'cursor-none' : 'cursor-default'}
       `}
     >
       <div className="absolute inset-0 pointer-events-none z-[5] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03]"></div>
@@ -129,7 +129,7 @@ const App: React.FC = () => {
       )}
       
       {isActivated && isMobile && <ExitButton onDeactivate={handleDeactivate} />}
-      {isActivated && !isMobile && <CursorHUD isHovering={isHovering} />}
+      {isActivated && !isMobile && viewMode === 'ORBIT' && listVisible && <CursorHUD isHovering={isHovering} />}
 
       <div 
         className={`
@@ -168,7 +168,7 @@ const App: React.FC = () => {
                   interactionsEnabled={isActivated}
                />
                <BodyInfo config={activeConfig} isVisible={infoVisible} />
-               <SystemList bodies={SOLAR_SYSTEM_DATA} onSelect={handleBodySelection} isVisible={listVisible} />
+               {/* Usunięto SystemList zgodnie z prośbą użytkownika */}
             </div>
         )}
       </div>
