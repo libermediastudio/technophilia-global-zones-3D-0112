@@ -7,13 +7,13 @@ interface LocationListProps {
   data: GlobeData;
   onSelect: (city: City) => void;
   selectedCity: City | null;
-  forceVisible?: boolean;
+  isVisible?: boolean;
 }
 
-export const LocationList: React.FC<LocationListProps> = ({ data, onSelect, selectedCity, forceVisible = false }) => {
+export const LocationList: React.FC<LocationListProps> = ({ data, onSelect, selectedCity, isVisible = true }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
-  if (!data.cities || data.cities.length === 0) return null;
+  if (!isVisible || !data.cities || data.cities.length === 0) return null;
 
   const filteredCities = data.cities.filter(city => 
     city.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -22,7 +22,7 @@ export const LocationList: React.FC<LocationListProps> = ({ data, onSelect, sele
   );
 
   return (
-    <div className={`absolute top-24 right-6 md:right-10 w-[240px] pointer-events-none z-30 font-mono ${forceVisible ? 'block animate-fade-in' : 'hidden md:block'}`}>
+    <div className="absolute top-24 right-6 md:right-10 w-[240px] pointer-events-none z-30 font-mono animate-fade-in">
        <div className="flex flex-col items-end">
            <div className="w-full pointer-events-auto flex flex-col">
                {/* Panel Title */}

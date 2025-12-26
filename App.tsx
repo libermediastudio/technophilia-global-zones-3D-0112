@@ -152,7 +152,7 @@ const App: React.FC = () => {
                   data={activeConfig.data}
                   onSelect={(city) => { handleCitySelect(city); globeRef.current?.flyTo(city); }} 
                   selectedCity={selectedItem}
-                  forceVisible={listVisible}
+                  isVisible={listVisible}
               />
               {selectedItem && <DetailPanel data={selectedItem} onClose={() => setSelectedItem(null)} />}
             </div>
@@ -168,7 +168,7 @@ const App: React.FC = () => {
                   interactionsEnabled={isActivated}
                />
                <BodyInfo config={activeConfig} isVisible={infoVisible} />
-               <SystemList bodies={SOLAR_SYSTEM_DATA} onSelect={handleBodySelection} forceVisible={listVisible} />
+               <SystemList bodies={SOLAR_SYSTEM_DATA} onSelect={handleBodySelection} isVisible={listVisible} />
             </div>
         )}
       </div>

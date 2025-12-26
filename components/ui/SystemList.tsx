@@ -6,12 +6,14 @@ import { CelestialBodyConfig } from '../../types/index.ts';
 interface SystemListProps {
   bodies: CelestialBodyConfig[];
   onSelect: (id: string) => void;
-  forceVisible?: boolean;
+  isVisible?: boolean;
 }
 
-export const SystemList: React.FC<SystemListProps> = ({ bodies, onSelect, forceVisible = false }) => {
+export const SystemList: React.FC<SystemListProps> = ({ bodies, onSelect, isVisible = true }) => {
   const [searchQuery, setSearchQuery] = useState('');
   
+  if (!isVisible) return null;
+
   // Wykluczamy planety pasywne z listy celów
   const excludedIds = ['mercury', 'venus', 'jupiter', 'saturn', 'uranus', 'neptune'];
   
@@ -22,7 +24,7 @@ export const SystemList: React.FC<SystemListProps> = ({ bodies, onSelect, forceV
   );
 
   return (
-    <div className={`absolute top-24 right-6 md:right-10 w-[240px] pointer-events-none z-30 font-mono ${forceVisible ? 'block animate-fade-in' : 'hidden md:block'}`}>
+    <div className="absolute top-24 right-6 md:right-10 w-[240px] pointer-events-none z-30 font-mono animate-fade-in">
        <div className="flex flex-col items-end">
            <div className="w-full pointer-events-auto flex flex-col">
                {/* Panel Title */}
